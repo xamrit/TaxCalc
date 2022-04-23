@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TaxCalc.Views.SlideoutPage"
+    BackgroundColor="#85bb65"
+    Title=" ">
+    <StackLayout>
+        <ListView x:Name="MenuItemsListView"
+            HasUnevenRows="true"
+            ItemsSource="{Binding MenuItems}"
+            SeparatorVisibility="Default"
+            SeparatorColor="#85bb65">
+            <ListView.Header>
+                <Grid 
+                    ColumnDefinitions="10,*,10"
+                    RowDefinitions="30,80,Auto,10">
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Text="TaxCalc"
+                        FontSize="50"
+                        FontAttributes="Bold"
+                        TextColor="White"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView
+                            Padding="4,2">
+                            <Frame 
+                                Padding="15,10" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#69a348"
+                                CornerRadius="0">
+                                    <Label 
+                                        VerticalOptions="FillAndExpand" 
+                                        VerticalTextAlignment="Center" 
+                                        Text="{Binding Title}" 
+                                        TextColor="White"
+                                        FontSize="25"/>
+                                </Frame>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxCalc.App">
+    <Application.Resources>
+        <!-- Colors -->
+        <Color x:Key="EntryTextColor">#528038</Color>
+        <Color x:Key="EntryBackgroundColor">White</Color>
+        <Color x:Key="EntryPlaceholderColor">Gray</Color>
+
+        <Color x:Key="ButtonBackgroundColor">#85bb65</Color>
+        <Color x:Key="ButtonTextColor">White</Color>
+
+        <Color x:Key="LabelTextColor">#85bb65</Color>
+        
+        <!-- Styles -->
+        <Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="{StaticResource EntryBackgroundColor}"/>
+            <Setter Property="TextColor" Value="{StaticResource EntryTextColor}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColor}"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}"/>
+            <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource LabelTextColor}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Small"/>
+        </Style>
+    </Application.Resources>
+</Application>

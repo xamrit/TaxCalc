@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TaxCalc.Views.TaxRatePage"
+    Title="Location Rate Calculator"
+    BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Margin="15"
+                RowDefinitions="Auto,Auto"
+                ColumnDefinitions="*">
+                <Grid
+                    Padding="5,5,5,1"
+                    VerticalOptions="Center"
+                    BackgroundColor="#85bb65"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                    ColumnDefinitions="*">
+                    <Entry 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        WidthRequest="300"
+                        Placeholder="Zip"
+                        Keyboard="Telephone"/>
+                    <Entry 
+                        Grid.Row="1"
+                        WidthRequest="300"
+                        Placeholder="State"/>
+                    <Entry 
+                        Grid.Row="2"
+                        WidthRequest="300"
+                        Placeholder="City"/>
+                    <Entry 
+                        Grid.Row="3"
+                        WidthRequest="300"
+                        Placeholder="Street"/>
+                </Grid>
+                <Button
+                    Grid.Row="1"
+                    WidthRequest="300"
+                    Text="Get Tax Rate"/>
+                <Frame
+                    Grid.Row="2"
+                    BorderColor="#85bb65">
+                    <Label
+                        Grid.Row="5"
+                        WidthRequest="300"
+                        Text="Results go here."/>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

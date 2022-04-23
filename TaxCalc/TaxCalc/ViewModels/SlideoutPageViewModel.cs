@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TaxCalc.Models;
-using TaxCalc.Views;
+using TaxCalc.Core.Models;
+using TaxCalc.Core.Views;
 
-namespace TaxCalc.ViewModels
+namespace TaxCalc.Core.ViewModels
 {
     public class SlideoutPageViewModel : INotifyPropertyChanged
     {

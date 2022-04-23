@@ -1,8 +1,8 @@
-﻿using TaxCalc.ViewModels;
+﻿using TaxCalc.Core.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TaxCalc.Views
+namespace TaxCalc.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SlideoutPage : ContentPage

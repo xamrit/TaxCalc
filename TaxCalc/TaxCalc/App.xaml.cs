@@ -1,7 +1,7 @@
-﻿using TaxCalc.Views;
+﻿using TaxCalc.Core.Views;
 using Xamarin.Forms;
 
-namespace TaxCalc
+namespace TaxCalc.Core
 {
     public partial class App : Application
     {

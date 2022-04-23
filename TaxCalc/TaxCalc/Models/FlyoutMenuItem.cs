@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaxCalc.Models
+namespace TaxCalc.Core.Models
 {
     public class FlyoutMenuItem
     {

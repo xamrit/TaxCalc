@@ -1,9 +1,9 @@
 ﻿using System;
-using TaxCalc.Models;
+using TaxCalc.Core.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TaxCalc.Views
+namespace TaxCalc.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainFlyoutPage : FlyoutPage

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using TaxCalc.Models;
+using TaxCalc.Core.Models;
 using TaxCalc.API;
 using System.Text.Json;
 
-namespace TaxCalc.Services
+namespace TaxCalc.Core.Services
 {
     public class TaxService : ITaxService
     {

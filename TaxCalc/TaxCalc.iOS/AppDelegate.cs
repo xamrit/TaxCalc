@@ -23,7 +23,7 @@ namespace TaxCalc.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new Core.App());
 
             return base.FinishedLaunching(app, options);
         }

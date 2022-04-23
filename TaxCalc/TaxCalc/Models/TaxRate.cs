@@ -1,6 +1,6 @@
 ﻿using TaxCalc.API.Interfaces;
 
-namespace TaxCalc.Models
+namespace TaxCalc.Core.Models
 {
     public class TaxRate : ITaxRate
     {

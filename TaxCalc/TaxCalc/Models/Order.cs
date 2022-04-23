@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaxCalc.API.Interfaces;
+﻿using TaxCalc.API.Interfaces;
 
-namespace TaxCalc.Models
+namespace TaxCalc.Core.Models
 {
     public class Order : IOrder
     {

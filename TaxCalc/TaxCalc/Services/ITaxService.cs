@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using TaxCalc.Models;
+using TaxCalc.Core.Models;
 
-namespace TaxCalc.Services
+namespace TaxCalc.Core.Services
 {
     public interface ITaxService
     {

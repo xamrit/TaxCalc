@@ -172,9 +172,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaxCalc\TaxCalc.csproj">
-      <Project>{0B22DDB5-96BF-44A0-808D-FA8C4CAE6C0D}</Project>
-      <Name>TaxCalc</Name>
+    <ProjectReference Include="..\TaxCalc\TaxCalc.Core.csproj">
+      <Project>{1EDAC1A5-F604-4BFD-B83F-E40DE3382C58}</Project>
+      <Name>TaxCalc.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

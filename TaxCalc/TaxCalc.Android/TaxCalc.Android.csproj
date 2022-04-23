@@ -89,9 +89,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\TaxCalc\TaxCalc.csproj">
-      <Project>{6F03FDD7-43DB-459B-A7EE-163A7BAA1FDB}</Project>
-      <Name>TaxCalc</Name>
+    <ProjectReference Include="..\TaxCalc\TaxCalc.Core.csproj">
+      <Project>{1EDAC1A5-F604-4BFD-B83F-E40DE3382C58}</Project>
+      <Name>TaxCalc.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32413.511
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalc.UWP", "TaxCalc.UWP\TaxCalc.UWP.csproj", "{328303C7-3C17-4445-A3CD-F2D21B6C110F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalc.iOS", "TaxCalc.iOS\TaxCalc.iOS.csproj", "{99B3937F-BAF5-4061-BCE8-0004CAAE77AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc", "TaxCalc\TaxCalc.csproj", "{1EDAC1A5-F604-4BFD-B83F-E40DE3382C58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Core", "TaxCalc\TaxCalc.Core.csproj", "{1EDAC1A5-F604-4BFD-B83F-E40DE3382C58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalc.API", "..\TaxCalc.API\TaxCalc.API.csproj", "{5BA9F5C4-57C6-4557-BDAF-9B7E039B2D64}"
 EndProject

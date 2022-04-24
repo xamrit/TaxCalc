@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TaxCalc.Core.Models;
 using TaxCalc.API;
-using System.Text.Json;
-
 namespace TaxCalc.Core.Services
 {
     public class TaxService : ITaxService
@@ -12,15 +10,19 @@ namespace TaxCalc.Core.Services
 
         public async Task<TaxRate> GetLocationTaxRatesForZipCode(string zip, string country = "", string state = "", string city = "", string street = "")
         {
-            var rateJson = await Api.GetLocationTaxRatesForZipCode(zip, country, state, city, street);
-            return JsonSerializer.Deserialize<TaxRate>(rateJson);
+            try
+            {
+                return await Api.GetLocationTaxRatesForZipCode<TaxRate>(zip, country, state, city, street);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<OrderTax> GetTaxForOrder(Order order)
         {
-            var orderJson = JsonSerializer.Serialize(order);
-            var rateJson = await Api.GetTaxForOrder(orderJson);
-            return JsonSerializer.Deserialize<OrderTax>(rateJson);
+            return null; // TODO
         }
     }
 }

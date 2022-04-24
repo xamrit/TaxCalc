@@ -1,12 +1,10 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using TaxCalc.Core.Models;
 using TaxCalc.Core.Views;
 
 namespace TaxCalc.Core.ViewModels
 {
-    public class SlideoutPageViewModel : INotifyPropertyChanged
+    public class SlideoutPageViewModel : BaseViewModel
     {
         public ObservableCollection<FlyoutMenuItem> MenuItems { get; set; }
 
@@ -16,18 +14,7 @@ namespace TaxCalc.Core.ViewModels
             {
                     new FlyoutMenuItem { Id = 0, Title = "Location Rate", TargetType=typeof(TaxRatePage) },
                     new FlyoutMenuItem { Id = 1, Title = "Order Tax", TargetType=typeof(OrderTaxPage) },
-                });
+            });
         }
-
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }

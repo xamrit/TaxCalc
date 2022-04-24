@@ -1,14 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TaxCalc.Core.Views.OrderTaxPage"
-             Title="Order Tax Calculator"
-             BackgroundColor="White">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TaxCalc.Core.Views.OrderTaxPage"
+    Title="Location Rate"
+    BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Order Tax"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid
+                Margin="15"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                ColumnDefinitions="*">
+                <Grid
+                    Grid.Row="0"
+                    Margin="5"
+                    RowSpacing="5"
+                    VerticalOptions="Center"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                    ColumnDefinitions="*">
+                    <Label
+                        Grid.Row="0"
+                        Text="From:"
+                        FontSize="Medium"/>
+                    <BoxView
+                        BackgroundColor="#85bb65"
+                        Grid.Row="1"
+                        Grid.RowSpan="5"
+                        Margin="-5"/>
+                    <Entry 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        WidthRequest="300"
+                        Placeholder="From Country"
+                        Text="{Binding Zip}"/>
+                    <Entry 
+                        Grid.Row="2"
+                        WidthRequest="300"
+                        Placeholder="From State"
+                        Text="{Binding City}"/>
+                    <Entry 
+                        Grid.Row="3"
+                        WidthRequest="300"
+                        Placeholder="From City"
+                        Text="{Binding City}"/>
+                    <Entry 
+                        Grid.Row="4"
+                        WidthRequest="300"
+                        Placeholder="From Street"
+                        Text="{Binding Street}"/>
+                    <Entry 
+                        Grid.Row="5"
+                        WidthRequest="300"
+                        Placeholder="From ZIP"
+                        Text="{Binding State}"/>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Padding="5"
+                    VerticalOptions="Center"
+                    BackgroundColor="#85bb65"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                    ColumnDefinitions="*">
+                    <Entry 
+                        Grid.Row="0"
+                        WidthRequest="300"
+                        Placeholder="To Country"
+                        Text="{Binding Street}"/>
+                    <!--<Label
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Text="(required)"
+                        TextColor="White"/>-->
+                    <Entry 
+                        Grid.Row="1"
+                        WidthRequest="300"
+                        Placeholder="To State"
+                        Text="{Binding Street}"/>
+                    <Entry 
+                        Grid.Row="2"
+                        WidthRequest="300"
+                        Placeholder="To City"
+                        Text="{Binding Street}"/>
+                    <Entry 
+                        Grid.Row="3"
+                        WidthRequest="300"
+                        Placeholder="To State"
+                        Text="{Binding Street}"/>
+                    <Entry 
+                        Grid.Row="4"
+                        WidthRequest="300"
+                        Placeholder="To ZIP"
+                        Text="{Binding State}"/>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    Padding="5"
+                    VerticalOptions="Center"
+                    BackgroundColor="#85bb65"
+                    RowDefinitions="Auto,Auto"
+                    ColumnDefinitions="*">
+                    <Entry 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        WidthRequest="300"
+                        Placeholder="Ammount"
+                        Text="{Binding Zip}"/>
+                    <Entry 
+                        Grid.Row="1"
+                        WidthRequest="300"
+                        Placeholder="Shipping"
+                        Text="{Binding City}"/>
+                </Grid>
+                <Button
+                    Grid.Row="3"
+                    HorizontalOptions="Center"
+                    Text="Get Tax Rates"
+                    Command="{Binding GetTaxRateButtonCommand}"
+                    Clicked="CalculateOrderTaxButtonClicked"/>
+                <Frame
+                    Grid.Row="4"
+                    BorderColor="#85bb65"
+                    VerticalOptions="Start">
+                    <Grid
+                        RowDefinitions="Auto,Auto,Auto">
+                        <Label
+                            Grid.Row="0"
+                            Text="{Binding TaxLocationResults}"
+                            FontSize="Small"/>
+                        <Label
+                            Grid.Row="1"
+                            Text="{Binding TaxRateResults}"
+                            FontSize="Small"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

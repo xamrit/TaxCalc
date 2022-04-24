@@ -1,13 +1,19 @@
-﻿using TaxCalc.Core.Views;
+﻿using TaxCalc.Core.Services;
+using TaxCalc.Core.Views;
 using Xamarin.Forms;
 
 namespace TaxCalc.Core
 {
     public partial class App : Application
     {
+        public static ITaxService TaxService;
+
         public App()
         {
             InitializeComponent();
+
+            TaxService = new TaxService();
+            TaxService.Initialize();
 
             MainPage = new MainFlyoutPage();
         }

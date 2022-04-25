@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Windows.Input;
 using TaxCalc.Core.Models;
 using TaxCalc.Core.Services;
@@ -15,10 +14,11 @@ namespace TaxCalc.Core.ViewModels
         private string _taxRateResults;
         private string _taxLocationResults;
 
-        public string Zip { get; set; }
+        public string Country { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
+        public string Zip { get; set; }
 
         public ICommand GetTaxRateButtonCommand { get; set; }
 
@@ -57,7 +57,7 @@ namespace TaxCalc.Core.ViewModels
 
             try
             {
-                taxRate = await _taxService?.GetLocationTaxRatesForZipCode(Zip, State, City, Street);
+                taxRate = await _taxService?.GetLocationTaxRatesForZipCode(Zip, Country, State, City, Street);
             }
             catch
             {
@@ -69,7 +69,8 @@ namespace TaxCalc.Core.ViewModels
             if (taxRate != null)
             {
                 var builder = new StringBuilder();
-                builder.AppendLine($"LOCATION");
+                builder.AppendLine();
+                builder.AppendLine("LOCATION");
                 builder.AppendLine();
                 builder.AppendLine($"Zip: {taxRate.zip}");
                 builder.AppendLine($"Country: {taxRate.country}");
@@ -81,7 +82,8 @@ namespace TaxCalc.Core.ViewModels
 
                 builder.Clear();
 
-                builder.AppendLine($"RATES");
+                builder.AppendLine();
+                builder.AppendLine("RATES");
                 builder.AppendLine();
                 builder.AppendLine($"Country Rate: {taxRate.country_rate}");
                 builder.AppendLine($"State Rate: {taxRate.state_rate}");

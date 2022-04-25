@@ -20,7 +20,8 @@ namespace TaxCalc.Core.Views
             const string description = "Please enter a valid Zip code.";
             const string accept = "OK";
 
-
+            if (string.IsNullOrWhiteSpace(ZipEntry.Text))
+                await DisplayAlert(title, description, accept);
         }
     }
 }

@@ -1,22 +1,42 @@
 ﻿using System.Threading.Tasks;
 using TaxCalc.Core.Models;
+using TaxCalc.API.Interfaces;
 using TaxCalc.API;
+
 namespace TaxCalc.Core.Services
 {
+    /// <inheritdoc/>
     public class TaxService : ITaxService
     {
-        public void Initialize() =>
-            Api.Initialize("https://api.taxjar.com/v2/", "5da2f821eee4035db4771edab942a4cc");
+        private ITaxCalculator _taxCalculator;
 
-        public async Task<TaxRate> GetLocationTaxRatesForZipCode(string zip, string country = "", string state = "", string city = "", string street = "")
+        /// <summary>
+        /// Default constructor that uses default <see cref="TaxCalculator"/> type.
+        /// </summary>
+        public TaxService() : this(new TaxCalculator()) { }
+
+        /// <summary>
+        /// Constructor allowing for custom <see cref="ITaxCalculator"/>.
+        /// </summary>
+        /// <param name="taxCalculator">The custom implementation of the <see cref="ITaxCalculator"/>.</param>
+        public TaxService(ITaxCalculator taxCalculator)
+        {
+            _taxCalculator = taxCalculator;
+            Initialize();
+        }
+
+        public void Initialize() =>
+            _taxCalculator.Initialize("https://api.taxjar.com/v2/", "5da2f821eee4035db4771edab942a4cc");
+
+        public async Task<TaxRate> GetLocationTaxRates(string zip, string country = "", string state = "", string city = "", string street = "")
         {
             try
             {
-                return await Api.GetLocationTaxRatesForZipCode<TaxRate>(zip, country, state, city, street);
+                return await _taxCalculator.GetLocationTaxRates<TaxRate>(zip, country, state, city, street);
             }
             catch
             {
-                throw;
+                throw; // Allow caller to handle exception.
             }
         }
 
@@ -24,11 +44,11 @@ namespace TaxCalc.Core.Services
         {
             try
             {
-                return await Api.GetTaxForOrder<OrderTax>(order);
+                return await _taxCalculator.GetTaxForOrder<OrderTax>(order);
             }
             catch
             {
-                throw;
+                throw; // Allow caller to handle exception.
             }
         }
     }

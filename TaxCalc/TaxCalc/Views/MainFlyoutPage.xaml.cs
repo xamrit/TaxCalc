@@ -5,6 +5,9 @@ using Xamarin.Forms.Xaml;
 
 namespace TaxCalc.Core.Views
 {
+    /// <summary>
+    /// The main flyout page of the app.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainFlyoutPage : FlyoutPage
     {
@@ -16,6 +19,10 @@ namespace TaxCalc.Core.Views
             SlideoutPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
+        /// <summary>
+        /// Defines what occurs on slide out menu taps. Opens the corresponding page with
+        /// the menu item.
+        /// </summary>
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as FlyoutMenuItem;

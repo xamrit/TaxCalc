@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="TaxCalc.Core.Views.OrderTaxPage"
-    Title="Order Tax"
+    Title="Order Taxes"
     BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView>
@@ -100,7 +100,7 @@
                         Text="{Binding ToCountry}"/>
                     <Entry 
                         Grid.Row="2"
-                        Placeholder="State (required if US or Canada)"
+                        Placeholder="State (two letter code, required if US or CA)"
                         x:Name="ToStateEntry"
                         Text="{Binding ToState}"/>
                     <Entry 

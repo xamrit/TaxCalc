@@ -76,7 +76,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api.cs" />
+    <Compile Include="Interfaces\ITaxCalculator.cs" />
+    <Compile Include="TaxCalculator.cs" />
     <Compile Include="Extensions\UriBuilderExtensions.cs" />
     <Compile Include="Interfaces\IOrder.cs" />
     <Compile Include="Interfaces\IOrderTax.cs" />

@@ -22,7 +22,14 @@ namespace TaxCalc.Core.Services
 
         public async Task<OrderTax> GetTaxForOrder(Order order)
         {
-            return null; // TODO
+            try
+            {
+                return await Api.GetTaxForOrder<OrderTax>(order);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

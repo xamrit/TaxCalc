@@ -20,49 +20,42 @@
                     ColumnDefinitions="*">
                     <Entry 
                         Grid.Row="0"
-                        WidthRequest="300"
                         Placeholder="Country (two letter code)"
                         Text="{Binding Country}"/>
                     <Entry 
                         Grid.Row="1"
-                        WidthRequest="300"
                         Placeholder="State (two letter code)"
                         Text="{Binding State}"/>
                     <Entry 
                         Grid.Row="2"
-                        WidthRequest="300"
                         Placeholder="City"
                         Text="{Binding City}"/>
                     <Entry 
                         Grid.Row="3"
-                        WidthRequest="300"
                         Placeholder="Street"
                         Text="{Binding Street}"/>
                     <Entry 
                         Grid.Row="4"
                         Grid.Column="0"
-                        WidthRequest="300"
-                        Placeholder="ZIP"
+                        Placeholder="ZIP (required)"
                         x:Name="ZipEntry"
                         Text="{Binding Zip}"/>
                 </Grid>
                 <Button
                     Grid.Row="1"
-                    WidthRequest="300"
                     Text="Get Tax Rates"
-                    Command="{Binding GetTaxRateButtonCommand}"
-                    Clicked="GetTaxRateButtonClicked"/>
+                    Command="{Binding GetTaxRateButtonCommand}"/>
                 <Grid
                     Grid.Row="2"
                     RowDefinitions="Auto,Auto">
                     <Label
                         Grid.Row="0"
                         Text="{Binding TaxLocationResults}"
-                        FontSize="Small"/>
+                        FontSize="20"/>
                     <Label
                         Grid.Row="1"
                         Text="{Binding TaxRateResults}"
-                        FontSize="Small"/>
+                        FontSize="20"/>
                 </Grid>
             </Grid>
         </ScrollView>

@@ -50,10 +50,16 @@ namespace TaxCalc.Core.ViewModels
 
         private async void OnGetTaxRateButtonCommand(object obj)
         {
+            const string title = "Warning";
+            const string description = "Please enter a valid Zip code.";
+            const string accept = "OK";
             TaxRate taxRate;
 
             if (string.IsNullOrWhiteSpace(Zip))
+            {
+                await Application.Current.MainPage.DisplayAlert(title, description, accept);
                 return;
+            }
 
             try
             {

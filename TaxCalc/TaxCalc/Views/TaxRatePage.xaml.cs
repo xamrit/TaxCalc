@@ -13,15 +13,5 @@ namespace TaxCalc.Core.Views
 
             BindingContext = new TaxRatePageViewModel(App.TaxService);
         }
-
-        private async void GetTaxRateButtonClicked(object sender, System.EventArgs e)
-        {
-            const string title = "Warning";
-            const string description = "Please enter a valid Zip code.";
-            const string accept = "OK";
-
-            if (string.IsNullOrWhiteSpace(ZipEntry.Text))
-                await DisplayAlert(title, description, accept);
-        }
     }
 }

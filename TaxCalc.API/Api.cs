@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TaxCalc.API.Extensions;
@@ -54,29 +55,32 @@ namespace TaxCalc.API
             }
         }
 
-        public static async Task<string> GetTaxForOrder(string orderJson)
+        public static async Task<TOrderTax> GetTaxForOrder<TOrderTax>(IOrder order)
+            where TOrderTax : IOrderTax
         {
             const string mediaType = "application/json";
 
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
 
-            var buffer = System.Text.Encoding.UTF8.GetBytes(orderJson);
-            var byteContent = new ByteArrayContent(buffer);
+            var orderJson = JsonSerializer.Serialize(order);
+            var requestContent = new StringContent(orderJson, Encoding.UTF8, "application/json");
 
             try
             {
-                HttpResponseMessage response = await Client.PostAsync($"{ApiEndpoint}taxes", byteContent);
+                HttpResponseMessage response = await Client.PostAsync($"{ApiEndpoint}taxes", requestContent);
 
                 using (var stream = await response.Content.ReadAsStreamAsync())
                 {
                     using (var streamReader = new StreamReader(stream))
                     {
-                        return streamReader.ReadToEnd();
+                        var responseBody = await streamReader.ReadToEndAsync();
+                        var taxRateInfo = JsonSerializer.Deserialize<OrderTaxInfo<TOrderTax>>(responseBody);
+                        return taxRateInfo.tax;
                     }
                 }
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
                 Console.WriteLine("\nException in Api.GetTaxForOrder caught.");
                 Console.WriteLine("Message :{0} ", e.Message);
@@ -88,5 +92,10 @@ namespace TaxCalc.API
     internal class TaxRateInfo<TTaxRate> where TTaxRate : ITaxRate
     {
         public TTaxRate rate { get; set; }
+    }
+
+    internal class OrderTaxInfo<TOrderTax> where TOrderTax : IOrderTax
+    {
+        public TOrderTax tax { get; set; }
     }
 }

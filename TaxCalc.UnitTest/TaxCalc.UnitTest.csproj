@@ -87,7 +87,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTests.cs" />
+    <Compile Include="Mocks\MockTaxCalculator.cs" />
+    <Compile Include="Mocks\MockTaxService.cs" />
+    <Compile Include="Tests\OrderTaxPageViewModelTests.cs" />
+    <Compile Include="Tests\TaxRatePageViewModelTests.cs" />
+    <Compile Include="Tests\TaxServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

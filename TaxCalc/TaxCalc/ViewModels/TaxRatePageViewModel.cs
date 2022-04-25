@@ -6,6 +6,9 @@ using Xamarin.Forms;
 
 namespace TaxCalc.Core.ViewModels
 {
+    /// <summary>
+    /// View model for the tax rate page view.
+    /// </summary>
     public class TaxRatePageViewModel : BaseViewModel
     {
         private const string NoResults = "No Results";
@@ -22,6 +25,10 @@ namespace TaxCalc.Core.ViewModels
 
         public ICommand GetTaxRateButtonCommand { get; set; }
 
+
+        /// <summary>
+        /// The displayed tax rate text.
+        /// </summary>
         public string TaxRateResults
         {
             get => _taxRateResults; 
@@ -31,6 +38,10 @@ namespace TaxCalc.Core.ViewModels
                 OnPropertyChanged(nameof(TaxRateResults));
             }
         }
+
+        /// <summary>
+        /// The displayed tax rate location text.
+        /// </summary>
         public string TaxLocationResults
         {
             get => _taxLocationResults;
@@ -41,6 +52,10 @@ namespace TaxCalc.Core.ViewModels
             }
         }
 
+
+        /// <summary>
+        /// Constructor. Initializes services and commands.
+        /// </summary>
         public TaxRatePageViewModel(ITaxService taxService)
         {
             _taxService = taxService;
@@ -48,6 +63,12 @@ namespace TaxCalc.Core.ViewModels
             GetTaxRateButtonCommand = new Command(OnGetTaxRateButtonCommand);
         }
 
+
+        /// <summary>
+        /// Handles what occurs on tap of the "Get Tax Rates" button.
+        /// Validates input. retrieves resulting <see cref="TaxRate"/> data and updates display. 
+        /// If error occurs, "No Results" is displayed.
+        /// </summary>
         private async void OnGetTaxRateButtonCommand(object obj)
         {
             const string title = "Warning";
@@ -55,23 +76,27 @@ namespace TaxCalc.Core.ViewModels
             const string accept = "OK";
             TaxRate taxRate;
 
+            // Validate input. At least zip code is needed to be entered.
             if (string.IsNullOrWhiteSpace(Zip))
             {
-                await Application.Current.MainPage.DisplayAlert(title, description, accept);
+                await Application.Current?.MainPage?.DisplayAlert(title, description, accept);
                 return;
             }
 
+            // Try to get the location tax rates.
             try
             {
-                taxRate = await _taxService?.GetLocationTaxRatesForZipCode(Zip, Country, State, City, Street);
+                taxRate = await _taxService?.GetLocationTaxRates(Zip, Country, State, City, Street);
             }
             catch
             {
+                // If unable to get rates, update text to show as "No Results".
                 TaxLocationResults = NoResults;
                 TaxRateResults = string.Empty;
                 return;
             }
 
+            // Update the display text to show the rates.
             if (taxRate != null)
             {
                 var builder = new StringBuilder();
@@ -100,6 +125,11 @@ namespace TaxCalc.Core.ViewModels
                 builder.AppendLine($"Freight Taxable: {taxRate.freight_taxable}");
 
                 TaxRateResults = builder.ToString();
+            }
+            else
+            {
+                TaxLocationResults = NoResults;
+                TaxRateResults = string.Empty;
             }
         }
     }

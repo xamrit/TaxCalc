@@ -3,16 +3,43 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="TaxCalc.Core.Views.OrderTaxPage"
-    Title="Location Rate"
+    Title="Order Tax"
     BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView>
             <Grid
                 Margin="15"
-                RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                RowDefinitions="Auto,Auto,Auto,Auto,700"
                 ColumnDefinitions="*">
                 <Grid
                     Grid.Row="0"
+                    Margin="5"
+                    RowSpacing="5"
+                    VerticalOptions="Center"
+                    RowDefinitions="Auto,Auto,Auto"
+                    ColumnDefinitions="*">
+                    <Label
+                        Grid.Row="0"
+                        Text="Order:"
+                        FontSize="Large"
+                        Margin="0,5"/>
+                    <BoxView
+                        BackgroundColor="#85bb65"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Margin="-5"/>
+                    <Entry 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Placeholder="Amount (excluding shipping, required)"
+                        Text="{Binding Amount}"/>
+                    <Entry 
+                        Grid.Row="2"
+                        Placeholder="Shipping (required)"
+                        Text="{Binding Shipping}"/>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
                     Margin="5"
                     RowSpacing="5"
                     VerticalOptions="Center"
@@ -21,7 +48,8 @@
                     <Label
                         Grid.Row="0"
                         Text="From:"
-                        FontSize="Medium"/>
+                        FontSize="Large"
+                        Margin="0,5"/>
                     <BoxView
                         BackgroundColor="#85bb65"
                         Grid.Row="1"
@@ -30,109 +58,74 @@
                     <Entry 
                         Grid.Row="1"
                         Grid.Column="0"
-                        WidthRequest="300"
-                        Placeholder="From Country"
-                        Text="{Binding Zip}"/>
+                        Placeholder="Country (two letter code)"
+                        Text="{Binding FromCountry}"/>
                     <Entry 
                         Grid.Row="2"
-                        WidthRequest="300"
-                        Placeholder="From State"
-                        Text="{Binding City}"/>
+                        Placeholder="State (two letter code)"
+                        Text="{Binding FromState}"/>
                     <Entry 
                         Grid.Row="3"
-                        WidthRequest="300"
-                        Placeholder="From City"
-                        Text="{Binding City}"/>
+                        Placeholder="City"
+                        Text="{Binding FromCity}"/>
                     <Entry 
                         Grid.Row="4"
-                        WidthRequest="300"
-                        Placeholder="From Street"
-                        Text="{Binding Street}"/>
+                        Placeholder="Street"
+                        Text="{Binding FromStreet}"/>
                     <Entry 
                         Grid.Row="5"
-                        WidthRequest="300"
-                        Placeholder="From ZIP"
-                        Text="{Binding State}"/>
-                </Grid>
-                <Grid
-                    Grid.Row="1"
-                    Padding="5"
-                    VerticalOptions="Center"
-                    BackgroundColor="#85bb65"
-                    RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                    ColumnDefinitions="*">
-                    <Entry 
-                        Grid.Row="0"
-                        WidthRequest="300"
-                        Placeholder="To Country"
-                        Text="{Binding Street}"/>
-                    <!--<Label
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        Text="(required)"
-                        TextColor="White"/>-->
-                    <Entry 
-                        Grid.Row="1"
-                        WidthRequest="300"
-                        Placeholder="To State"
-                        Text="{Binding Street}"/>
-                    <Entry 
-                        Grid.Row="2"
-                        WidthRequest="300"
-                        Placeholder="To City"
-                        Text="{Binding Street}"/>
-                    <Entry 
-                        Grid.Row="3"
-                        WidthRequest="300"
-                        Placeholder="To State"
-                        Text="{Binding Street}"/>
-                    <Entry 
-                        Grid.Row="4"
-                        WidthRequest="300"
-                        Placeholder="To ZIP"
-                        Text="{Binding State}"/>
+                        Placeholder="ZIP"
+                        Text="{Binding FromZip}"/>
                 </Grid>
                 <Grid
                     Grid.Row="2"
-                    Padding="5"
+                    Margin="5"
+                    RowSpacing="5"
                     VerticalOptions="Center"
-                    BackgroundColor="#85bb65"
-                    RowDefinitions="Auto,Auto"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
                     ColumnDefinitions="*">
-                    <Entry 
+                    <Label
                         Grid.Row="0"
-                        Grid.Column="0"
-                        WidthRequest="300"
-                        Placeholder="Ammount"
-                        Text="{Binding Zip}"/>
+                        Text="To:"
+                        FontSize="Large"
+                        Margin="0,5"/>
+                    <BoxView
+                        BackgroundColor="#85bb65"
+                        Grid.Row="1"
+                        Grid.RowSpan="5"
+                        Margin="-5"/>
                     <Entry 
                         Grid.Row="1"
-                        WidthRequest="300"
-                        Placeholder="Shipping"
-                        Text="{Binding City}"/>
+                        Placeholder="Country (required)"
+                        Text="{Binding ToCountry}"/>
+                    <Entry 
+                        Grid.Row="2"
+                        Placeholder="State (required if US or Canada)"
+                        x:Name="ToStateEntry"
+                        Text="{Binding ToState}"/>
+                    <Entry 
+                        Grid.Row="3"
+                        Placeholder="City"
+                        Text="{Binding ToCity}"/>
+                    <Entry 
+                        Grid.Row="4"
+                        Placeholder="Street"
+                        Text="{Binding ToStreet}"/>
+                    <Entry 
+                        Grid.Row="5"
+                        Placeholder="ZIP (required if US)"
+                        x:Name="ToZipEntry"
+                        Text="{Binding ToZip}"/>
                 </Grid>
                 <Button
                     Grid.Row="3"
-                    HorizontalOptions="Center"
-                    Text="Get Tax Rates"
-                    Command="{Binding GetTaxRateButtonCommand}"
-                    Clicked="CalculateOrderTaxButtonClicked"/>
-                <Frame
+                    Text="Calculate Order Tax"
+                    Command="{Binding GetOrderTaxButtonCommand}"/>
+                <Label
+                    Margin="10"
                     Grid.Row="4"
-                    BorderColor="#85bb65"
-                    VerticalOptions="Start">
-                    <Grid
-                        RowDefinitions="Auto,Auto,Auto">
-                        <Label
-                            Grid.Row="0"
-                            Text="{Binding TaxLocationResults}"
-                            FontSize="Small"/>
-                        <Label
-                            Grid.Row="1"
-                            Text="{Binding TaxRateResults}"
-                            FontSize="Small"/>
-                    </Grid>
-                </Frame>
+                    Text="{Binding OrderTaxResults}"
+                    FontSize="20"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

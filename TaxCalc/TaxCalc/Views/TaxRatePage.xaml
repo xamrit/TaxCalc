@@ -3,51 +3,67 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="TaxCalc.Core.Views.TaxRatePage"
-    Title="Location Rate Calculator"
+    Title="Tax Rate"
     BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView>
             <Grid
                 Margin="15"
-                RowDefinitions="Auto,Auto"
+                RowDefinitions="Auto,Auto,700"
                 ColumnDefinitions="*">
                 <Grid
-                    Padding="5,5,5,1"
+                    Padding="5,5,5,5"
+                    RowSpacing="5"
                     VerticalOptions="Center"
                     BackgroundColor="#85bb65"
                     RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                     ColumnDefinitions="*">
                     <Entry 
                         Grid.Row="0"
-                        Grid.Column="0"
                         WidthRequest="300"
-                        Placeholder="Zip"
-                        Keyboard="Telephone"/>
+                        Placeholder="Country (two letter code)"
+                        Text="{Binding Country}"/>
                     <Entry 
                         Grid.Row="1"
                         WidthRequest="300"
-                        Placeholder="State"/>
+                        Placeholder="State (two letter code)"
+                        Text="{Binding State}"/>
                     <Entry 
                         Grid.Row="2"
                         WidthRequest="300"
-                        Placeholder="City"/>
+                        Placeholder="City"
+                        Text="{Binding City}"/>
                     <Entry 
                         Grid.Row="3"
                         WidthRequest="300"
-                        Placeholder="Street"/>
+                        Placeholder="Street"
+                        Text="{Binding Street}"/>
+                    <Entry 
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        WidthRequest="300"
+                        Placeholder="ZIP"
+                        x:Name="ZipEntry"
+                        Text="{Binding Zip}"/>
                 </Grid>
                 <Button
                     Grid.Row="1"
                     WidthRequest="300"
-                    Text="Get Tax Rate"/>
-                <Frame
+                    Text="Get Tax Rates"
+                    Command="{Binding GetTaxRateButtonCommand}"
+                    Clicked="GetTaxRateButtonClicked"/>
+                <Grid
                     Grid.Row="2"
-                    BorderColor="#85bb65">
+                    RowDefinitions="Auto,Auto">
                     <Label
-                        Grid.Row="5"
-                        WidthRequest="300"
-                        Text="Results go here."/>
-                </Frame>
+                        Grid.Row="0"
+                        Text="{Binding TaxLocationResults}"
+                        FontSize="Small"/>
+                    <Label
+                        Grid.Row="1"
+                        Text="{Binding TaxRateResults}"
+                        FontSize="Small"/>
+                </Grid>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

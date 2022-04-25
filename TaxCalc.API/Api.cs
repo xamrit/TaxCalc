@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
 using System.Threading.Tasks;
 using TaxCalc.API.Extensions;
+using TaxCalc.API.Interfaces;
 
 namespace TaxCalc.API
 {
@@ -22,19 +23,8 @@ namespace TaxCalc.API
                 new AuthenticationHeaderValue(scheme, $"Token token=\"{apiKey}\"");
         }
 
-        //static async Task Main()
-        //{
-        //    Initialize("https://api.taxjar.com/v2/", "5da2f821eee4035db4771edab942a4cc");
-        //    //await GetLocationTaxRatesForZipCode("98109", country:"US",city:"Seattle", street: "400 Broad Street");
-
-
-        //    var order = "{\n    \"from_country\": \"US\",\n    \"from_zip\": \"07001\",\n    \"from_state\": \"NJ\",\n    \"to_country\": \"US\",\n    \"to_zip\": \"07446\",\n    \"to_state\": \"NJ\",\n    \"amount\": 16.50,\n    \"shipping\": 1.5,\n    \"line_items\": [\n        {\n            \"quantity\": 1,\n            \"unit_price\": 15.0,\n            \"product_tax_code\": \"31000\"\n        }\n    ]\n}";
-
-        //    var res = await GetTaxForOrder(order);
-        //    Debug.WriteLine(res);
-        //}
-
-        public static async Task<string> GetLocationTaxRatesForZipCode(string zip, string country = "", string state = "", string city = "", string street = "")
+        public static async Task<TTaxRate> GetLocationTaxRatesForZipCode<TTaxRate>(string zip, string country = "", string state = "", string city = "", string street = "")
+            where TTaxRate : ITaxRate
         {
             Client.DefaultRequestHeaders.Accept.Clear();
 
@@ -53,20 +43,15 @@ namespace TaxCalc.API
             {
                 var response = await Client.GetAsync(baseUri.Uri);
                 response.EnsureSuccessStatusCode();
-
-                var responseBody = await response.Content.ReadAsStringAsync();
-
-                Debug.WriteLine(baseUri.Uri.ToString());
-                Debug.WriteLine(responseBody);
-                return responseBody;
+                var taxRateInfo = JsonSerializer.Deserialize<TaxRateInfo<TTaxRate>>(await response.Content.ReadAsStringAsync());
+                return taxRateInfo.rate;
             }
-            catch (HttpRequestException e)
+            catch (Exception e)
             {
-                Debug.WriteLine("\nException Caught!");
-                Debug.WriteLine("Message :{0} ", e.Message);
+                Console.WriteLine("\nException in Api.GetLocationTaxRatesForZipCode caught.");
+                Console.WriteLine("Message :{0} ", e.Message);
+                throw;
             }
-
-            return null;
         }
 
         public static async Task<string> GetTaxForOrder(string orderJson)
@@ -93,11 +78,15 @@ namespace TaxCalc.API
             }
             catch (HttpRequestException e)
             {
-                Debug.WriteLine("\nException Caught!");
-                Debug.WriteLine("Message :{0} ", e.Message); 
+                Console.WriteLine("\nException in Api.GetTaxForOrder caught.");
+                Console.WriteLine("Message :{0} ", e.Message);
+                throw;
             }
-
-            return null; 
         }
+    }
+
+    internal class TaxRateInfo<TTaxRate> where TTaxRate : ITaxRate
+    {
+        public TTaxRate rate { get; set; }
     }
 }

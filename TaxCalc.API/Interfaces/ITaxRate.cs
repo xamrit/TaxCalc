@@ -4,15 +4,15 @@
     {
         string zip { get; set; }
         string country { get; set; }
-        float country_rate { get; set; }
+        string country_rate { get; set; }
         string state { get; set; }
-        float state_rate { get; set; }
+        string state_rate { get; set; }
         string county { get; set; }
-        float county_rate { get; set; }
+        string county_rate { get; set; }
         string city { get; set; }
-        float city_rate { get; set; }
-        float combined_district_rate { get; set; }
-        float combined_rate { get; set; }
-        float freight_taxable { get; set; }
+        string city_rate { get; set; }
+        string combined_district_rate { get; set; }
+        string combined_rate { get; set; }
+        bool freight_taxable { get; set; }
     }
 }
